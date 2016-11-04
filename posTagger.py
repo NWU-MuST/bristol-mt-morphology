@@ -313,30 +313,30 @@ class PosTagger(object):
 
         # m rules
         elif jMorpheme1 == "<mr>" and (firstMorpheme == '<asp>' or self._iXSet.__contains__(firstMorpheme) or firstMorpheme == '<neg>' or firstMorpheme == '<past>' or self._pXSet.__contains__(firstMorpheme)):
-            posTag = 'm'
+            posTag = 'verb'
             if debug:  
                 posTag += " 8"
             
         # n rules
         # ADDED: n    first morpheme <voc>
         elif firstMorpheme == '<d>' and (self._nXSet.__contains__(jMorpheme1) or jMorpheme1 == '<nr>'):
-            posTag = 'n'
+            posTag = 'noun'
             if debug:  
                 posTag += " 9"
             
         elif self._dXSet.__contains__(firstMorpheme) and (self._nXSet.__contains__(jMorpheme1) or jMorpheme1 == '<nr>'):
-            posTag = 'n'
+            posTag = 'noun'
             if debug:  
                 posTag += " 10"
             
         elif firstMorpheme == '<vr>' and jMorpheme1 == '<in>':
-            posTag = 'n'
+            posTag = 'noun'
             if debug:  
                 posTag += " 11"
             
         # ADDED: n    first morpheme <red>     J morpheme <nr>
         elif firstMorpheme == '<red>' and jMorpheme1 == '<nr>':
-            posTag = 'n'
+            posTag = 'noun'
             if debug:  
                 posTag += " 12"
             
@@ -349,29 +349,29 @@ class PosTagger(object):
 
         # q rules
         elif self._prXSet.__contains__(firstMorpheme) and (jMorpheme1 == '<qr>' or self._nXSet.__containts__(jMorpheme1)):
-            posTag = 'q'
+            posTag = 'quan'
             if debug:  
                 posTag += " 14"
 
         # v rules
         elif (jMorpheme1 == '<vr>' or jMorpheme1 == '<fut>' or jMorpheme1 == '<opt>') and (firstMorpheme == '<asp>' or self._iXSet.__contains__(firstMorpheme) or firstMorpheme == '<neg>' or firstMorpheme == '<past>' or self._pXSet.__contains__(firstMorpheme)):
-            posTag = 'v'
+            posTag = 'verb'
             if debug:  
                 posTag += " 15"
         
         elif jMorpheme1 == '<imp>' and (self._oXSet.__contains__(firstMorpheme) or firstMorpheme == '<red>' or firstMorpheme == '<refl>' or firstMorpheme == '<st>' or firstMorpheme == '<vr>'):
-            posTag = 'v'
+            posTag = 'verb'
             if debug:  
                 posTag += " 16"
 
         elif firstMorpheme == '<vr>' and jMorpheme1 == '<pl>':
-            posTag = 'v'
+            posTag = 'verb'
             if debug:  
                 posTag += " 17"
          
         #ADDED: first morpheme <oX>     J morpheme <vr>     
         elif self._oXSet.__contains__(firstMorpheme) and jMorpheme1 == '<vr>':
-            posTag = 'v'
+            posTag = 'verb'
             if debug:  
                 posTag += " 18"
         
@@ -379,7 +379,7 @@ class PosTagger(object):
         # ADDED: first morpheme <refl>   J morpheme <vr>
         # ADDED: first morpheme <st>     J morpheme <vr>
         elif jMorpheme1 == '<vr>' and (firstMorpheme == '<red>' or firstMorpheme == '<refl>' or firstMorpheme == '<st>'):
-            posTag = 'v'
+            posTag = 'verb'
             if debug:  
                 posTag += " 19"
 
@@ -388,7 +388,7 @@ class PosTagger(object):
         #=======================================================================
         #a rules
         elif firstMorpheme == "<ar>":
-            posTag = 'a'
+            posTag = 'adj'
             if debug:  
                 posTag += " 20"
             
@@ -418,7 +418,7 @@ class PosTagger(object):
             
         # n rules
         elif firstMorpheme == '<iv>' or self._iv_nXSet.__contains__(firstMorpheme) or self._nXSet.__contains__(firstMorpheme) or firstMorpheme == '<nr>' or firstMorpheme == '<der>' or firstMorpheme == '<voc>':
-            posTag = 'n'
+            posTag = 'noun'
             if debug:  
                 posTag += " 25"
             
@@ -430,7 +430,7 @@ class PosTagger(object):
             
         # p rule
         elif firstMorpheme == '<p>':
-            posTag = 'p'
+            posTag = 'prep'
             if debug:  
                 posTag += " 27"
             
@@ -459,7 +459,7 @@ class PosTagger(object):
                 posTag += " 31"
             
         elif (firstMorpheme == '<hort>' or self._iX_vrSet.__contains__(firstMorpheme) or self._pX_vrSet.__contains__(firstMorpheme) or self._sXSet.__contains__(firstMorpheme)):
-            posTag = 'v'            
+            posTag = 'verb'            
             if debug:  
                 posTag += " 32"
 
@@ -496,7 +496,7 @@ usage = "\nRule-based part-of-speech tagger for Zulu which uses morphological in
 usage +="\nusage 1: %prog -a singleAnalysis, e.g. posTagger.py -a 'a<hort>k<s1>enz<vr>e<vs>'\n"
 usage +="\nusage 2: %prog -i inFile -o outFile [-s flag for separate files for each POS] [-w print word at beginning of line] [-m multiLabel (word + all labels)]\n"
 usage +="\nusage 3: %prog -i inFile -o outFile -t sentenceInFile\n"
-usage +="\nPOS tags:\ta (adjective)\n\t\tadv (adverb)\n\t\tconj (conjunction)\n\t\tcop (copulative)\n\t\tdem (demonstrative)\n\t\tintj (interjection)\n\t\tloc (locative)\n\t\tm (modal)\n\t\tn (noun)\n\t\tp (prepositional)\n\t\tpos (possessive)\n\t\tpres (presentative)\n\t\tpron (pronoun)\n\t\tq (quantifier)\n\t\trel (relative)\n\t\tv (verb)\n"
+usage +="\nPOS tags:\tadj (adjective)\n\t\tadv (adverb)\n\t\tconj (conjunction)\n\t\tcop (copulative)\n\t\tdem (demonstrative)\n\t\tintj (interjection)\n\t\tloc (locative)\n\t\tnoun (noun)\n\t\tprep (prepositional)\n\t\tpos (possessive)\n\t\tpres (presentative)\n\t\tpron (pronoun)\n\t\tquan (quantifier)\n\t\trel (relative)\n\t\tverb (verb)\n"
 parser = OptionParser(usage=usage, version="%prog 1.0")
 parser.add_option("-i", "--inFile", action="store", type="string", dest="inFile", help="input file")
 parser.add_option("-o", "--outFile", action="store", type="string", dest="outFile", help="output file")
