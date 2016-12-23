@@ -472,7 +472,7 @@ class PosTagger(object):
             if debug:  
                 posTag += " 33"
         else:
-            posTag = 'unknown'
+            posTag = 'unk'
             if debug:  
                 posTag += " 34"
         
